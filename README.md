@@ -1,4 +1,4 @@
-bbb
+Symfony3 quick echo random number benchmark
 ===
 
-A Symfony project created on January 12, 2016, 12:09 am.
+Will test symfony performance on simple tasks
