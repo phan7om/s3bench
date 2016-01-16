@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $number = rand(1, 100);
+        $number = rand(10, 99); // две цифры, чтобы ab не жаловался на разную длину реквестов
         return $this->render('AppBundle:default:index.html.twig', [
             'random_number' => $number,
         ]);
