@@ -24,6 +24,7 @@ class DefaultController extends Controller
         $number = rand($start, $end); // две цифры, чтобы ab не жаловался на разную длину реквестов
         return $this->render('AppBundle:default:random.html.twig', [
             'random_number' => $number,
+            'memory_usage' => memory_get_usage(),
         ]);
     }
 }
