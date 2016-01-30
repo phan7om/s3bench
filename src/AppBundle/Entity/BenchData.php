@@ -22,6 +22,13 @@ class BenchData
     /**
      * @var integer
      *
+     * @ORM\Column(name="number", type="integer", nullable=false)
+     */
+    private $number;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
@@ -52,6 +59,30 @@ class BenchData
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set number
+     *
+     * @param integer $number
+     *
+     * @return BenchData
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get number
+     *
+     * @return integer
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 
     /**
