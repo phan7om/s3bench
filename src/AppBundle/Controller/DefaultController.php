@@ -18,15 +18,26 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/random/{start}/{end}", name="random")
+     * @Route("/random/{start}/{end}/{native}", name="random")
      */
-    public function randomAction(Request $request, $start, $end)
+    public function randomAction(Request $request, $start, $end, $native)
     {
         $number = rand($start, $end); // две цифры, чтобы ab не жаловался на разную длину реквестов
-        $record = $this->getDoctrine()->getRepository('AppBundle:BenchData')->findOneByNumber($number);
+
+        if ($native) {
+            $c = pg_connect("host=192.168.1.103 port=6432 dbname=bench user=tmp", PGSQL_CONNECT_FORCE_NEW);
+            $res = pg_query($c, "SELECT * from bench_data WHERE number = $number");
+            while ($row = pg_fetch_row($res)) {
+                $record = $row;
+            }
+        } else {
+            $record = $this->getDoctrine()->getRepository('AppBundle:BenchData')->findOneByNumber($number);
+        }
+
         return $this->render('AppBundle:default:random.html.twig', [
             'random_number' => $number,
             'memory_usage' => memory_get_usage(),
+            'native' => $native,
             'record' => $record,
         ]);
     }

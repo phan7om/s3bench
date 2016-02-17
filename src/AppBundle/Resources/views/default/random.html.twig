@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Welcome!</title>
 </head>
 <body>
 <p>Hello, world!</p>
 <p>My random number is {{ random_number }}</p>
 <p>Memory usage: {{ memory_usage }}</p>
-<p>Object: id = {{ record.number }}, name = {{ record.name }}</p>
+{% if native == false %}
+    <p>Object: id = {{ record.number }}, name = {{ record.name }}</p>
+{% else %}
+    <p>Object: id = {{ record[0] }}, name = {{ record[1] }}</p>
+{% endif %}
 </body>
 </html>
